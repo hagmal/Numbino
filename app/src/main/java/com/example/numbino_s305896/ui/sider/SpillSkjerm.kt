@@ -7,11 +7,15 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -22,6 +26,8 @@ import androidx.compose.ui.unit.sp
 import com.example.numbino_s305896.ui.theme.Numbino_s305896Theme
 import com.example.numbino_s305896.R
 import com.example.numbino_s305896.ui.komponenter.NummerKnappen
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 
 @Composable
 fun SpillSkjermen (
@@ -31,86 +37,106 @@ fun SpillSkjermen (
     vedTallKlikk: (Int) -> Unit, // Funksjon som kalles når tallknappen trykkes
     vedAvbrytKlikk: () -> Unit // Funksjon for avbryt-knapp
 ) {
+    var visDialog by remember { mutableStateOf(false) }
+
     Column (
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Viser tilbakemelding til brukeren basert på tilstand
-        when(tilbakemelding) {
-            1 -> Image(
-                painter = painterResource(id = R.drawable.ic_riktig_svar),
-                contentDescription = "Riktig svar"
-            )
-            2 -> Image(
-                painter = painterResource(id = R.drawable.ic_galt_svar),
-                contentDescription = "Feil svar"
-            )
-            3 -> Image(
-                painter = painterResource(id = R.drawable.ic_venter),
-                contentDescription = "Venter på svar"
-            )
-        }
-
-        // Viser regnestykket
-        Text(
-            text = spørsmål,
-            fontSize = 48.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-
-        // Viser svaret som brukeren taster inn.
-        Text(
-            text = brukerSvar,
-            fontSize = 48.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-
-        Row (
+        // Avbryt-knapp som avslutter spillet.
+        Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
-
+            horizontalArrangement = Arrangement.End
+        ){
+            IconButton(onClick = { visDialog = true }) {
+                Icon(Icons.Default.Close,
+                    contentDescription = "Avslutt spillet")
+            }
+        }
+        // Resterende innhold under avbryt-knappen.
+        Column (
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceEvenly
         ) {
-            NummerKnappen(nummer = 1, vedKlikk = vedTallKlikk)
-            NummerKnappen(nummer = 2, vedKlikk = vedTallKlikk)
-            NummerKnappen(nummer = 3, vedKlikk = vedTallKlikk)
-        }
 
-        Spacer(modifier = Modifier.padding(8.dp))
 
-        Row (
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
+            // Viser tilbakemelding til brukeren basert på tilstand
+            when(tilbakemelding) {
+                1 -> Image(
+                    painter = painterResource(id = R.drawable.ic_riktig_svar),
+                    contentDescription = "Riktig svar",
+                )
+                2 -> Image(
+                    painter = painterResource(id = R.drawable.ic_feil_svar),
+                    contentDescription = "Feil svar"
+                )
+                3 -> Image(
+                    painter = painterResource(id = R.drawable.ic_venter),
+                    contentDescription = "Venter på svar"
+                )
+            }
+
+            // Viser regnestykket
+            Text(
+                text = spørsmål,
+                fontSize = 48.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 16.dp)
+            )
+
+            // Viser svaret som brukeren taster inn.
+            Text(
+                text = brukerSvar,
+                fontSize = 48.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 16.dp)
+            )
+
+            Row (
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+
             ) {
-            NummerKnappen(nummer = 4, vedKlikk = vedTallKlikk)
-            NummerKnappen(nummer = 5, vedKlikk = vedTallKlikk)
-            NummerKnappen(nummer = 6, vedKlikk = vedTallKlikk)
-        }
+                NummerKnappen(nummer = 1, vedKlikk = vedTallKlikk)
+                NummerKnappen(nummer = 2, vedKlikk = vedTallKlikk)
+                NummerKnappen(nummer = 3, vedKlikk = vedTallKlikk)
+            }
 
-        Spacer(modifier = Modifier.padding(8.dp))
+            Spacer(modifier = Modifier.padding(8.dp))
 
-        Row (
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            NummerKnappen(nummer = 7, vedKlikk = vedTallKlikk)
-            NummerKnappen(nummer = 8, vedKlikk = vedTallKlikk)
-            NummerKnappen(nummer = 9, vedKlikk = vedTallKlikk)
-        }
+            Row (
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                NummerKnappen(nummer = 4, vedKlikk = vedTallKlikk)
+                NummerKnappen(nummer = 5, vedKlikk = vedTallKlikk)
+                NummerKnappen(nummer = 6, vedKlikk = vedTallKlikk)
+            }
 
-        Spacer(modifier = Modifier.padding(8.dp))
+            Spacer(modifier = Modifier.padding(8.dp))
 
-        Row (
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            NummerKnappen(nummer = 0, vedKlikk = vedTallKlikk)
+            Row (
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                NummerKnappen(nummer = 7, vedKlikk = vedTallKlikk)
+                NummerKnappen(nummer = 8, vedKlikk = vedTallKlikk)
+                NummerKnappen(nummer = 9, vedKlikk = vedTallKlikk)
+            }
+
+            Spacer(modifier = Modifier.padding(8.dp))
+
+            Row (
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                NummerKnappen(nummer = 0, vedKlikk = vedTallKlikk)
+            }
         }
     }
-
 }
 
 @Preview(showBackground = true)
