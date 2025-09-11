@@ -9,9 +9,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.numbino_s305896.R
+import com.example.numbino_s305896.ui.theme.Numbino_s305896Theme
 
 @Composable
 fun PreferanserSkjerm() {
@@ -27,6 +29,13 @@ fun PreferanserSkjerm() {
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding (bottom = 16.dp)
         )
+    }
+}
 
+@Preview (showBackground = true)
+@Composable
+fun PreferanserSkjermPreview() {
+    Numbino_s305896Theme {
+        PreferanserSkjerm()
     }
 }
