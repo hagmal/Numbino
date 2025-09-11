@@ -33,14 +33,17 @@ fun StartSkjermen (
             .padding(16.dp), // Padding rundt kolonnen
         horizontalAlignment = Alignment.CenterHorizontally // Sentrerer innholdet horisontalt
     ) {
+        // Overskrift
         Text(
             text = stringResource(id = R.string.app_name),
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold
         )
 
+        // Avstand mellom overskrift og knapper
         Spacer(modifier = Modifier.height(400.dp))
 
+        // Bruker startknapp-komponenten
         StartKnappen(
             tekst = stringResource(id = R.string.start_spill),
             onClick = klikkStartSpill
