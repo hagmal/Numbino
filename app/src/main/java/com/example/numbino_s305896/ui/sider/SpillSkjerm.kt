@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Icon
@@ -68,14 +69,17 @@ fun SpillSkjermen (
                 1 -> Image(
                     painter = painterResource(id = R.drawable.ic_riktig_svar),
                     contentDescription = "Riktig svar",
+                    modifier = Modifier.size(300.dp)
                 )
                 2 -> Image(
                     painter = painterResource(id = R.drawable.ic_feil_svar),
-                    contentDescription = "Feil svar"
+                    contentDescription = "Feil svar",
+                    modifier = Modifier.size(300.dp)
                 )
                 3 -> Image(
                     painter = painterResource(id = R.drawable.ic_venter),
-                    contentDescription = "Venter på svar"
+                    contentDescription = "Venter på svar",
+                    modifier = Modifier.size(300.dp)
                 )
             }
 
