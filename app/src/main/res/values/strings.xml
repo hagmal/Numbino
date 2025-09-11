@@ -1,6 +1,11 @@
 <resources>
-    <string name="app_name">Numbino_s305896</string>
+    <string name="app_name"> Numbino </string>
     <string name="start_spill"> Start spill </string>
     <string name="om_spill"> Om spill </string>
     <string name="preferanser"> Preferanser </string>
+    <string name="om_spill_overskrift"> Om spillet </string>
+    <string name="om_spill_tekst"> Appen er en matematikk-applikasjon for små barn som skal lære seg
+                                  regnestykker.
+
+    </string>
 </resources>
