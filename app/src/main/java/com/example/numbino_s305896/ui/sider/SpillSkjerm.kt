@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -29,6 +31,7 @@ import com.example.numbino_s305896.R
 import com.example.numbino_s305896.ui.komponenter.NummerKnappen
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.stringResource
 
 @Composable
 fun SpillSkjermen (
@@ -44,7 +47,7 @@ fun SpillSkjermen (
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         // Avbryt-knapp som avslutter spillet.
         Row(
@@ -85,20 +88,9 @@ fun SpillSkjermen (
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 16.dp)
         )
-
-        // Viser svaret som brukeren taster inn.
-        /*Text(
-            text = brukerSvar,
-            fontSize = 48.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-         */
-
         Row (
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
-
         ) {
             NummerKnappen(nummer = 1, vedKlikk = vedTallKlikk)
             NummerKnappen(nummer = 2, vedKlikk = vedTallKlikk)
@@ -131,11 +123,34 @@ fun SpillSkjermen (
 
         Row (
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
+            horizontalArrangement = Arrangement.SpaceEvenly
+
         ) {
             NummerKnappen(nummer = 0, vedKlikk = vedTallKlikk)
-
         }
+    }
+
+    if (visDialog) {
+        AlertDialog(
+            onDismissRequest = { visDialog = false },
+            text = {
+                Text(text = stringResource(R.string.dialog_tekst))
+            },
+            confirmButton = {
+                Button(
+                    onClick = { vedAvbrytKlikk() }
+                ) {
+                    Text(stringResource(id = R.string.dialog_ja))
+                }
+            },
+            dismissButton = {
+                Button(
+                    onClick = { visDialog = false }
+                ) {
+                    Text(stringResource(id = R.string.dialog_nei))
+                }
+            }
+        )
     }
 }
 
