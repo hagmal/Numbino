@@ -36,7 +36,7 @@ import androidx.compose.ui.res.stringResource
 @Composable
 fun SpillSkjermen (
     spørsmål: String, // Regnestykket som skal vises
-    brukerSvar: String, // Svaret som brukeren trykker inn
+    trykketNummer: Int?, // Hvilket tall brukeren har trykket på
     tilbakemelding: Int, // Tilstand for visuell tilbakemelding (1=riktig, 2=feil, 3=venter)
     vedTallKlikk: (Int) -> Unit, // Funksjon som kalles når tallknappen trykkes
     vedAvbrytKlikk: () -> Unit // Funksjon for avbryt-knapp
@@ -88,45 +88,61 @@ fun SpillSkjermen (
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 16.dp)
         )
-        Row (
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            NummerKnappen(nummer = 1, vedKlikk = vedTallKlikk)
-            NummerKnappen(nummer = 2, vedKlikk = vedTallKlikk)
-            NummerKnappen(nummer = 3, vedKlikk = vedTallKlikk)
-        }
+        if (trykketNummer == null) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                // Rader med tallknapper
+                Row (
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    NummerKnappen(nummer = 1, vedKlikk = vedTallKlikk)
+                    NummerKnappen(nummer = 2, vedKlikk = vedTallKlikk)
+                    NummerKnappen(nummer = 3, vedKlikk = vedTallKlikk)
+                }
 
-        Spacer(modifier = Modifier.padding(8.dp))
+                Spacer(modifier = Modifier.padding(8.dp))
 
-        Row (
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            NummerKnappen(nummer = 4, vedKlikk = vedTallKlikk)
-            NummerKnappen(nummer = 5, vedKlikk = vedTallKlikk)
-            NummerKnappen(nummer = 6, vedKlikk = vedTallKlikk)
-        }
+                Row (
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    NummerKnappen(nummer = 4, vedKlikk = vedTallKlikk)
+                    NummerKnappen(nummer = 5, vedKlikk = vedTallKlikk)
+                    NummerKnappen(nummer = 6, vedKlikk = vedTallKlikk)
+                }
 
-        Spacer(modifier = Modifier.padding(8.dp))
+                Spacer(modifier = Modifier.padding(8.dp))
 
-        Row (
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            NummerKnappen(nummer = 7, vedKlikk = vedTallKlikk)
-            NummerKnappen(nummer = 8, vedKlikk = vedTallKlikk)
-            NummerKnappen(nummer = 9, vedKlikk = vedTallKlikk)
-        }
+                Row (
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    NummerKnappen(nummer = 7, vedKlikk = vedTallKlikk)
+                    NummerKnappen(nummer = 8, vedKlikk = vedTallKlikk)
+                    NummerKnappen(nummer = 9, vedKlikk = vedTallKlikk)
+                }
 
-        Spacer(modifier = Modifier.padding(8.dp))
+                Spacer(modifier = Modifier.padding(8.dp))
 
-        Row (
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
+                Row (
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
 
-        ) {
-            NummerKnappen(nummer = 0, vedKlikk = vedTallKlikk)
+                ) {
+                    NummerKnappen(nummer = 0, vedKlikk = vedTallKlikk)
+                }
+            }
+        } else {
+            Row (
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center
+            ){
+                trykketNummer.let {
+                    NummerKnappen(nummer = it, vedKlikk = {})
+                }
+            }
         }
     }
 
@@ -160,8 +176,8 @@ fun SpillSkjermPreview() {
     Numbino_s305896Theme {
         SpillSkjermen(
             spørsmål = "2 + 2",
-            brukerSvar = "3",
-            tilbakemelding = 1,
+            tilbakemelding = 3,
+            trykketNummer = null,
             vedTallKlikk = {},
             vedAvbrytKlikk =  {}
         )
