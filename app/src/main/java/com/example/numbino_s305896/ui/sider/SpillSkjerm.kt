@@ -20,6 +20,7 @@ import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -34,10 +35,20 @@ import com.example.numbino_s305896.R
 import com.example.numbino_s305896.ui.komponenter.NummerKnappen
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.numbino_s305896.SpillViewModel
 
 @Composable
 fun SpillSkjermen (
+    spillViewModel: SpillViewModel = viewModel()
+) {
+    val spillUiState by spillViewModel.uiState.collectAsState()
+}
+
+@Composable
+fun SpillSkjermUI (
     spørsmål: String, // Regnestykket som skal vises
     brukerSvar: String,
     tilbakemelding: Int, // Tilstand for visuell tilbakemelding (1=riktig, 2=feil, 3=venter)
@@ -152,11 +163,8 @@ fun SpillSkjermen (
             NummerKnappen(nummer = 0, vedKlikk = vedTallKlikk)
         }
     }
-}
 
-
-/*
-if (visDialog) {
+    if (visDialog) {
         AlertDialog(
             onDismissRequest = { visDialog = false },
             text = {
@@ -180,13 +188,17 @@ if (visDialog) {
     }
 }
 
- */
+
+
+
+
+
 
 @Preview(showBackground = true)
 @Composable
 fun SpillSkjermPreview() {
     Numbino_s305896Theme {
-        SpillSkjermen(
+        SpillSkjermUI(
             spørsmål = "2 + 2 = ",
             tilbakemelding = 3,
             brukerSvar = "4",
