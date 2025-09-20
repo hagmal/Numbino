@@ -39,6 +39,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.numbino_s305896.SpillViewModel
+import com.example.numbino_s305896.ui.komponenter.AvbrytDialog
 
 @Composable
 fun SpillSkjermen (
@@ -162,37 +163,14 @@ fun SpillSkjermUI (
         ) {
             NummerKnappen(nummer = 0, vedKlikk = vedTallKlikk)
         }
-    }
-
-    if (visDialog) {
-        AlertDialog(
-            onDismissRequest = { visDialog = false },
-            text = {
-                Text(text = stringResource(R.string.dialog_tekst))
-            },
-            confirmButton = {
-                Button(
-                    onClick = { vedAvbrytKlikk() }
-                ) {
-                    Text(stringResource(id = R.string.dialog_ja))
-                }
-            },
-            dismissButton = {
-                Button(
-                    onClick = { visDialog = false }
-                ) {
-                    Text(stringResource(id = R.string.dialog_nei))
-                }
-            }
-        )
+        if (visDialog) {
+            AvbrytDialog(
+                vedLukk = { visDialog = false },
+                vedBekreft = { vedAvbrytKlikk() }
+            )
+        }
     }
 }
-
-
-
-
-
-
 
 @Preview(showBackground = true)
 @Composable
