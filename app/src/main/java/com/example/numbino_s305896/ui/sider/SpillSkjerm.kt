@@ -31,6 +31,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.numbino_s305896.SpillViewModel
 import com.example.numbino_s305896.ui.komponenter.AvbrytDialog
 import com.example.numbino_s305896.ui.komponenter.RegnestykkeOgSvarBoks
+import com.example.numbino_s305896.ui.komponenter.TallRad
 import com.example.numbino_s305896.ui.komponenter.TilbakemeldingsBilde
 
 @Composable
@@ -78,46 +79,17 @@ fun SpillSkjermUI (
         Spacer(modifier = Modifier.padding(16.dp))
 
         // Rader med tallknapper
-        Row (
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            NummerKnappen(nummer = 1, vedKlikk = vedTallKlikk)
-            NummerKnappen(nummer = 2, vedKlikk = vedTallKlikk)
-            NummerKnappen(nummer = 3, vedKlikk = vedTallKlikk)
-        }
-
+        TallRad(tall = listOf(1, 2, 3), vedTallKlikk = vedTallKlikk)
         Spacer(modifier = Modifier.padding(8.dp))
 
-        Row (
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            NummerKnappen(nummer = 4, vedKlikk = vedTallKlikk)
-            NummerKnappen(nummer = 5, vedKlikk = vedTallKlikk)
-            NummerKnappen(nummer = 6, vedKlikk = vedTallKlikk)
-        }
-
+        TallRad(tall = listOf(4, 5, 6), vedTallKlikk = vedTallKlikk)
         Spacer(modifier = Modifier.padding(8.dp))
 
-        Row (
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            NummerKnappen(nummer = 7, vedKlikk = vedTallKlikk)
-            NummerKnappen(nummer = 8, vedKlikk = vedTallKlikk)
-            NummerKnappen(nummer = 9, vedKlikk = vedTallKlikk)
-        }
-
+        TallRad(tall = listOf(7, 8, 9), vedTallKlikk = vedTallKlikk)
         Spacer(modifier = Modifier.padding(8.dp))
 
-        Row (
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
+        TallRad(tall = listOf(0), vedTallKlikk = vedTallKlikk)
 
-        ) {
-            NummerKnappen(nummer = 0, vedKlikk = vedTallKlikk)
-        }
         if (visDialog) {
             // Henter Avbryt-dialog-boksen fra komponenter i ui-pakka
             AvbrytDialog(
