@@ -9,16 +9,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LocalTextStyle
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
@@ -26,20 +20,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.numbino_s305896.ui.theme.Numbino_s305896Theme
 import com.example.numbino_s305896.R
 import com.example.numbino_s305896.ui.komponenter.NummerKnappen
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.numbino_s305896.SpillViewModel
 import com.example.numbino_s305896.ui.komponenter.AvbrytDialog
+import com.example.numbino_s305896.ui.komponenter.RegnestykkeOgSvarBoks
+import com.example.numbino_s305896.ui.komponenter.TilbakemeldingsBilde
 
 @Composable
 fun SpillSkjermen (
@@ -50,7 +42,7 @@ fun SpillSkjermen (
 
 @Composable
 fun SpillSkjermUI (
-    spørsmål: String, // Regnestykket som skal vises
+    regnestykke: String, // Regnestykket som skal vises
     brukerSvar: String,
     tilbakemelding: Int, // Tilstand for visuell tilbakemelding (1=riktig, 2=feil, 3=venter)
     vedTallKlikk: (Int) -> Unit, // Funksjon som kalles når tallknappen trykkes
@@ -74,51 +66,14 @@ fun SpillSkjermUI (
                     contentDescription = "Avslutt spillet")
             }
         }
-        // Resterende innhold under avbryt-knappen.
-        // Viser tilbakemelding til brukeren basert på tilstand
-        when(tilbakemelding) {
-            1 -> Image(
-                painter = painterResource(id = R.drawable.ic_riktig_svar),
-                contentDescription = "Riktig svar",
-                modifier = Modifier.size(300.dp)
-            )
-            2 -> Image(
-                painter = painterResource(id = R.drawable.ic_feil_svar),
-                contentDescription = "Feil svar",
-                modifier = Modifier.size(300.dp)
-            )
-            3 -> Image(
-                painter = painterResource(id = R.drawable.ic_venter),
-                contentDescription = "Venter på svar",
-                modifier = Modifier.size(300.dp)
-            )
-        }
+        // Viser tilbakemelding til brukeren basert på tilstand, dvs.
+        // figuren endrer seg
+        TilbakemeldingsBilde(tilstand = tilbakemelding)
 
         Spacer(modifier = Modifier.padding(8.dp))
 
-        Row (
-            horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            // Viser regnestykket
-            Text(
-                text = spørsmål,
-                fontSize = 48.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
-            OutlinedTextField(
-                value = brukerSvar,
-                onValueChange = {},
-                readOnly = true,
-                textStyle = LocalTextStyle.current.copy(
-                    textAlign = TextAlign.Center,
-                    fontSize = 32.sp
-                ),
-                modifier = Modifier
-                    .width(60.dp)
-            )
-        }
+        // Viser regnestykke og svarboks på en rad
+        RegnestykkeOgSvarBoks(regnestykke = regnestykke, svar = brukerSvar)
 
         Spacer(modifier = Modifier.padding(16.dp))
 
@@ -146,8 +101,8 @@ fun SpillSkjermUI (
         Spacer(modifier = Modifier.padding(8.dp))
 
         Row (
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             NummerKnappen(nummer = 7, vedKlikk = vedTallKlikk)
             NummerKnappen(nummer = 8, vedKlikk = vedTallKlikk)
@@ -164,6 +119,7 @@ fun SpillSkjermUI (
             NummerKnappen(nummer = 0, vedKlikk = vedTallKlikk)
         }
         if (visDialog) {
+            // Henter Avbryt-dialog-boksen fra komponenter i ui-pakka
             AvbrytDialog(
                 vedLukk = { visDialog = false },
                 vedBekreft = { vedAvbrytKlikk() }
@@ -172,12 +128,13 @@ fun SpillSkjermUI (
     }
 }
 
+
 @Preview(showBackground = true)
 @Composable
 fun SpillSkjermPreview() {
     Numbino_s305896Theme {
         SpillSkjermUI(
-            spørsmål = "2 + 2 = ",
+            regnestykke = "2 + 2 = ",
             tilbakemelding = 3,
             brukerSvar = "4",
             vedTallKlikk = {},
