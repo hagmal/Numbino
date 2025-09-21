@@ -14,6 +14,7 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,6 +28,8 @@ import com.example.numbino_s305896.R
 import com.example.numbino_s305896.ui.komponenter.NummerKnappen
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.integerArrayResource
+import androidx.compose.ui.res.stringArrayResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.numbino_s305896.SpillViewModel
 import com.example.numbino_s305896.ui.komponenter.AvbrytDialog
@@ -38,7 +41,24 @@ import com.example.numbino_s305896.ui.komponenter.TilbakemeldingsBilde
 fun SpillSkjermen (
     spillViewModel: SpillViewModel = viewModel()
 ) {
+    val oppgaver = stringArrayResource(R.array.regnestykker).toList()
+    val fasit = integerArrayResource(R.array.svar).toList()
+
+    LaunchedEffect(Unit) {
+        spillViewModel.alleRegnestykker = oppgaver
+        spillViewModel.alleSvar = fasit
+        spillViewModel.startNyttSpill()
+    }
+
     val spillUiState by spillViewModel.uiState.collectAsState()
+
+    SpillSkjermUI(
+        regnestykke = spillUiState.regnestykke,
+        brukerSvar = spillUiState.brukerSvar,
+        tilbakemelding = spillUiState.tilbakemelding,
+        vedTallKlikk = { tall -> spillViewModel.sjekkSvar(tall)},
+        vedAvbrytKlikk = { spillViewModel.startNyttSpill() }
+    )
 }
 
 @Composable

@@ -4,5 +4,6 @@ data class SpillUiState (
     val regnestykke: String = "",
     val brukerSvar: String = "",
     val tilbakemelding: Int = 3,
-    val ferdig: Boolean = false
+    val ferdig: Boolean = false,
+    val erSvarFeil: Boolean = false
 )
