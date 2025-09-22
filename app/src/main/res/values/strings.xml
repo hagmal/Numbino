@@ -3,11 +3,21 @@
     <string name="start_spill"> Start spill </string>
     <string name="om_spill"> Om spill </string>
     <string name="preferanser"> Preferanser </string>
+
     <string name="om_spill_overskrift"> Om spillet </string>
     <string name="om_spill_tekst"> Appen er en matematikk-applikasjon for små barn som skal lære seg
-                                  regnestykker.
-    </string>
+                                  regnestykker.</string>
+
     <string name="dialog_tekst"> Er du sikker på at du vil avslutte spillet? </string>
-    <string name="dialog_ja"> Ja </string>"
-    <string name="dialog_nei"> Nei </string>"
+    <string name="dialog_ja"> Ja </string>
+    <string name="dialog_nei"> Nei </string>
+
+    <string name="spill_ferdig"> Spillet er ferdig! </string>
+    <string name="ikke_flere_oppgaver"> Det er ikke flere oppgaver igjen</string>
+    <string name="spill_paa_nytt"> Spill på nytt </string>
+
+    <string name="lagret_antall_log"> Lagret antall oppgaver: %d</string>
+    <string name="valg_5"> 5 </string>
+    <string name="valg_10"> 10 </string>
+    <string name="valg_15"> 15 </string>
 </resources>
