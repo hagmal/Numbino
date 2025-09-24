@@ -14,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.numbino_s305896.ui.navigasjon.AppNavHost
 import com.example.numbino_s305896.ui.sider.OmSpillet
 import com.example.numbino_s305896.ui.sider.PreferanserSkjerm
 import com.example.numbino_s305896.ui.sider.SpillSkjermen
@@ -26,30 +27,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Numbino_s305896Theme {
                 val navController = rememberNavController()
-
-                NavHost(
-                    navController = navController,
-                    startDestination = "start"
-                ) {
-                    composable("start") {
-                        StartSkjermen(
-                            klikkStartSpill = { navController.navigate("spill") },
-                            klikkOmSpill = { navController.navigate("om") },
-                            klikkPreferanser = { navController.navigate("prefs") }
-                        )
-                    }
-                    composable("spill") {
-                        SpillSkjermen(
-                            vedAvbryt = { navController.popBackStack() }
-                        )
-                    }
-                    composable ("om") {
-                        OmSpillet()
-                    }
-                    composable ("prefs") {
-                        PreferanserSkjerm()
-                    }
-                }
+                AppNavHost(navController = navController)
             }
         }
     }

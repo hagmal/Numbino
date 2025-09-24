@@ -1,7 +1,6 @@
 package com.example.numbino_s305896.ui.sider
 
 import android.content.Context
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,7 +8,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Icon
@@ -22,12 +20,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.numbino_s305896.ui.theme.Numbino_s305896Theme
 import com.example.numbino_s305896.R
-import com.example.numbino_s305896.ui.komponenter.NummerKnappen
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
@@ -38,7 +34,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.numbino_s305896.ui.SpillViewModel
-import com.example.numbino_s305896.ui.komponenter.AvbrytDialog
+import com.example.numbino_s305896.ui.komponenter.DialogBoks
 import com.example.numbino_s305896.ui.komponenter.RegnestykkeOgSvarBoks
 import com.example.numbino_s305896.ui.komponenter.StartKnappen
 import com.example.numbino_s305896.ui.komponenter.TallRad
@@ -71,7 +67,10 @@ fun SpillSkjermen (
         ferdig = spillUiState.ferdig,
         vedTallKlikk = { tall -> spillViewModel.sjekkSvar(tall)},
         vedAvbrytKlikk = vedAvbryt,
-        vedStartPaNytt = { spillViewModel.startNyttSpill(antall) }
+        vedStartPaNytt = {
+            val antall = prefs.getInt("antall_oppgaver", 5)
+            spillViewModel.startNyttSpill(antall)
+        }
     )
 }
 
@@ -126,31 +125,31 @@ fun SpillSkjermUI (
 
         TallRad(tall = listOf(0), vedTallKlikk = vedTallKlikk)
 
-        if (ferdig) {
-            Text(
-                text = stringResource(R.string.spill_ferdig),
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 16.dp)
-            )
-            Text(
-                text = stringResource(R.string.ikke_flere_oppgaver),
-                fontSize = 16.sp,
-                modifier = Modifier.padding(bottom = 32.dp)
-            )
-            StartKnappen(
-                tekst = stringResource(R.string.spill_paa_nytt),
-                onClick = vedStartPaNytt
+        if (visDialog) {
+            // Henter Avbryt-dialog-boksen fra komponenter i ui-pakka
+            DialogBoks(
+                tittel = "",
+                tekst = stringResource(R.string.dialog_tekst_avbryt),
+                bekreftTekst = stringResource(R.string.dialog_ja),
+                avbrytTekst = stringResource(R.string.dialog_nei),
+                kanLukkesUtenValg = false,
+                vedBekreft = {
+                    visDialog = false
+                    vedAvbrytKlikk()
+                },
+                vedAvbryt = { visDialog = false }
             )
         }
 
-        if (visDialog) {
-            // Henter Avbryt-dialog-boksen fra komponenter i ui-pakka
-            AvbrytDialog(
-                vedLukk = { visDialog = false },
-                vedBekreft = {
-                    visDialog = false
-                    vedAvbrytKlikk() }
+        if (ferdig) {
+            DialogBoks(
+                tittel = stringResource(R.string.spill_ferdig),
+                tekst = stringResource(R.string.spill_paa_nytt),
+                bekreftTekst = stringResource(R.string.dialog_ja),
+                avbrytTekst = stringResource(R.string.dialog_nei),
+                kanLukkesUtenValg = false,
+                vedBekreft = vedStartPaNytt,
+                vedAvbryt = vedAvbrytKlikk
             )
         }
     }

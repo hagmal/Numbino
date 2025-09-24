@@ -24,10 +24,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.numbino_s305896.R
+import com.example.numbino_s305896.ui.komponenter.TilbakeTopBar
 import com.example.numbino_s305896.ui.theme.Numbino_s305896Theme
 
 @Composable
-fun PreferanserSkjerm() {
+fun PreferanserSkjerm(vedTilbake: () -> Unit) {
     val context = LocalContext.current
     val sharedPrefs = remember {
         context.getSharedPreferences("numbino_prefs", Context.MODE_PRIVATE)
@@ -42,6 +43,9 @@ fun PreferanserSkjerm() {
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ){
+        TilbakeTopBar(
+            vedTilbake = vedTilbake
+        )
         Text(
             text = stringResource(id = R.string.preferanser),
             fontSize = 24.sp,
@@ -88,6 +92,8 @@ fun PreferanserSkjerm() {
 @Composable
 fun PreferanserSkjermPreview() {
     Numbino_s305896Theme {
-        PreferanserSkjerm()
+        PreferanserSkjerm(
+            vedTilbake = { }
+        )
     }
 }
