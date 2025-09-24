@@ -6,8 +6,20 @@
     <string name="preferanser"> Preferanser </string>
 
     <string name="om_spill_overskrift"> Om spillet </string>
-    <string name="om_spill_tekst"> Appen er en matematikk-applikasjon for små barn som skal lære seg
-                                  regnestykker.</string>
+    <string name="om_spill_tekst"> Numbino er et enkelt mattespill for barn som øver på addisjon.
+        Spillet viser små regnestykker, og barnet velger riktig svar fra tallknappene. Når spillet
+        er ferdig, kan man starte på nytt eller endre antall oppgaver under "preferanser". \n
+        \n
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. \n
+        \n
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
+    </string>
 
     <string name="dialog_tekst_avbryt"> Er du sikker på at du vil avslutte spillet? </string>
     <string name="dialog_ja"> Ja </string>

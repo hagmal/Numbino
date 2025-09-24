@@ -24,8 +24,8 @@ fun StartKnappen(
 ) {
     Button(
         onClick = onClick,
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(16.dp), // Gir knappen avrundede hjørner
+        modifier = Modifier.fillMaxWidth(0.8f),
+        shape = RoundedCornerShape(50.dp), // Gir knappen avrundede hjørner
         colors = farge
     ) {
         // Teksten som vises inne i knappen

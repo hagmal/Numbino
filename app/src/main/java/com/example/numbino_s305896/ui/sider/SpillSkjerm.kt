@@ -1,6 +1,7 @@
 package com.example.numbino_s305896.ui.sider
 
 import android.content.Context
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -38,6 +39,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.numbino_s305896.ui.SpillViewModel
 import com.example.numbino_s305896.ui.komponenter.DialogBoks
 import com.example.numbino_s305896.ui.komponenter.RegnestykkeOgSvarBoks
+import com.example.numbino_s305896.ui.komponenter.SpillTopBar
 import com.example.numbino_s305896.ui.komponenter.StartKnappen
 import com.example.numbino_s305896.ui.komponenter.TallRad
 import com.example.numbino_s305896.ui.komponenter.TilbakemeldingsBilde
@@ -95,16 +97,8 @@ fun SpillSkjermUI (
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Avbryt-knapp som avslutter spillet.
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.End
-        ){
-            IconButton(onClick = { visDialog = true }) {
-                Icon(Icons.Default.Close,
-                    contentDescription = "Avslutt spillet")
-            }
-        }
+        SpillTopBar (onClose = { visDialog = true })
+
         // Viser tilbakemelding til brukeren basert på tilstand, dvs.
         // figuren endrer seg
         TilbakemeldingsBilde(tilstand = tilbakemelding)
@@ -137,6 +131,7 @@ fun SpillSkjermUI (
                 avbrytTekst = stringResource(R.string.dialog_nei),
                 kanLukkesUtenValg = false,
                 vedBekreft = {
+                    Log.d("avbryt", "X trykket")
                     visDialog = false
                     vedAvbrytKlikk()
                 },

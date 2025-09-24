@@ -40,6 +40,8 @@ fun StartSkjermen (
             .padding(16.dp), // Padding rundt kolonnen
         horizontalAlignment = Alignment.CenterHorizontally // Sentrerer innholdet horisontalt
     ) {
+        Spacer(modifier = Modifier.height(30.dp))
+
         Image(
             painter = painterResource(id = R.drawable.ic_numbino),
             contentDescription = "Numbino-figur",
@@ -63,7 +65,7 @@ fun StartSkjermen (
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onBackground
         )
-        Spacer(modifier = Modifier.height(100.dp))
+        Spacer(modifier = Modifier.height(200.dp))
 
         // Bruker startknapp-komponenten
         StartKnappen(
