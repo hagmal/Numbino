@@ -7,6 +7,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -23,10 +24,9 @@ fun StartKnappen(
 ) {
     Button(
         onClick = onClick,
-        modifier = Modifier //Bruker Modifier for å endre utseende/oppførsel
-            .fillMaxWidth(), // Gjør knappen like bred som forelder-elementet
+        modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp), // Gir knappen avrundede hjørner
-        colors = farge // Setter fargene som ble sendt inn
+        colors = farge
     ) {
         // Teksten som vises inne i knappen
         Text(

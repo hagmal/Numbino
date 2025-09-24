@@ -25,9 +25,6 @@ private val DarkColorScheme = darkColorScheme(
     onBackground = OnBakgrunn,
 
     surfaceVariant = BakgrunnAlternativ,
-
-    surface = NoytralBrun,
-    onSurface = OnNoytralBrun
 )
 
 

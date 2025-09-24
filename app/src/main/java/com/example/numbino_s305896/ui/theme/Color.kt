@@ -19,9 +19,6 @@ val Bakgrunn = Color (0xFF666C80)
 val BakgrunnAlternativ = Color (0xFF667D80)
 val OnBakgrunn = Color(0xFFFFFFFF) // Hvit tekst på mørk bakgrunn
 
-// Nøytrale farge (dialogboks, rammer osv)
-val NoytralBrun = Color (0xFF807566)
-val OnNoytralBrun = Color(0xFFFFFFFF)
 
 
 

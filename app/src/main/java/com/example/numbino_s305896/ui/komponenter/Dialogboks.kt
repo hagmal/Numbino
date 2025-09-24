@@ -2,6 +2,7 @@ package com.example.numbino_s305896.ui.komponenter
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
@@ -16,21 +17,14 @@ fun DialogBoks(
     kanLukkesUtenValg: Boolean = false
 ) {
     AlertDialog(
-        onDismissRequest = {
-            if (kanLukkesUtenValg) vedAvbryt()
-        },
-        text = { Text(tekst) },
+        onDismissRequest = { if (kanLukkesUtenValg) vedAvbryt() },
+        title = { Text(tittel, color = MaterialTheme.colorScheme.onSurface) },
+        text = { Text(tekst, color = MaterialTheme.colorScheme.onSurface) },
         confirmButton = {
-            DialogKnapp(
-                tekst = bekreftTekst,
-                onClick = vedBekreft
-            )
+            DialogKnapp(tekst = bekreftTekst, onClick = vedBekreft)
         },
         dismissButton = {
-            DialogKnapp(
-                tekst = avbrytTekst,
-                onClick = vedAvbryt
-            )
+            DialogKnapp(tekst = avbrytTekst, onClick = vedAvbryt)
         }
     )
 }
