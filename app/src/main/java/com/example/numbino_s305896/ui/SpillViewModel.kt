@@ -77,7 +77,9 @@ class SpillViewModel : ViewModel() {
             brukerSvar = "",
             tilbakemelding = 3,
             ferdig = false,
-            erSvarFeil = false
+            erSvarFeil = false,
+            current = currentIndex + 1,
+            total = indekser.size
         )
     }
 
@@ -87,7 +89,9 @@ class SpillViewModel : ViewModel() {
             brukerSvar = "",
             tilbakemelding = 3,
             ferdig = true,
-            erSvarFeil = false
+            erSvarFeil = false,
+            current = indekser.size,
+            total = indekser.size
         )
     }
 }

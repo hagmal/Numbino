@@ -14,17 +14,17 @@ fun TilbakemeldingsBilde(tilstand: Int) {
         1 -> Image(
             painter = painterResource(id = R.drawable.ic_riktig_svar),
             contentDescription = "Riktig svar",
-            modifier = Modifier.size(260.dp)
+            modifier = Modifier.size(240.dp)
         )
         2 -> Image(
             painter = painterResource(id = R.drawable.ic_feil_svar),
             contentDescription = "Feil svar",
-            modifier = Modifier.size(260.dp)
+            modifier = Modifier.size(240.dp)
         )
         3 -> Image(
             painter = painterResource(id = R.drawable.ic_venter),
             contentDescription = "Venter på svar",
-            modifier = Modifier.size(260.dp)
+            modifier = Modifier.size(240.dp)
         )
     }
 }

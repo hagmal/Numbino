@@ -7,9 +7,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Icon
@@ -38,6 +41,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.numbino_s305896.ui.SpillViewModel
 import com.example.numbino_s305896.ui.komponenter.DialogBoks
+import com.example.numbino_s305896.ui.komponenter.ProgressIndikator
 import com.example.numbino_s305896.ui.komponenter.RegnestykkeOgSvarBoks
 import com.example.numbino_s305896.ui.komponenter.SpillTopBar
 import com.example.numbino_s305896.ui.komponenter.StartKnappen
@@ -74,7 +78,9 @@ fun SpillSkjermen (
         vedStartPaNytt = {
             val antall = prefs.getInt("antall_oppgaver", 5)
             spillViewModel.startNyttSpill(antall)
-        }
+        },
+        current = spillUiState.current,
+        total = spillUiState.total
     )
 }
 
@@ -86,7 +92,9 @@ fun SpillSkjermUI (
     ferdig: Boolean,
     vedTallKlikk: (Int) -> Unit, // Funksjon som kalles når tallknappen trykkes
     vedAvbrytKlikk: () -> Unit, // Funksjon for avbryt-knapp
-    vedStartPaNytt: () -> Unit
+    vedStartPaNytt: () -> Unit,
+    current: Int,
+    total: Int
 ) {
     var visDialog by remember { mutableStateOf(false) }
 
@@ -98,6 +106,12 @@ fun SpillSkjermUI (
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         SpillTopBar (onClose = { visDialog = true })
+
+        ProgressIndikator(
+            current = current,
+            total = total,
+            modifier = Modifier.padding(vertical = 6.dp)
+        )
 
         // Viser tilbakemelding til brukeren basert på tilstand, dvs.
         // figuren endrer seg
@@ -165,7 +179,9 @@ fun SpillSkjermPreview() {
             vedTallKlikk = {},
             vedAvbrytKlikk =  {},
             ferdig = false,
-            vedStartPaNytt = {}
+            vedStartPaNytt = {},
+            current = 2,
+            total = 5
         )
     }
 }

@@ -34,4 +34,6 @@
     <string name="valg_15"> 15 </string>
 
     <string name="tilbake"> Tilbake </string>
+
+    <string name="preferanser_forklaring">Velg antall oppgaver</string>
 </resources>
