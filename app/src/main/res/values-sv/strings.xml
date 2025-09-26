@@ -26,4 +26,5 @@
     <string name="lagret_antall_log">Sparat antal uppgifter: %d</string>
     <string name="tilbake">Tillbaka</string>
     <string name="preferanser_forklaring">Välj antal uppgifter</string>
+    <string name="dialog_tittel_avbryt">Avsluta spelet?</string>
 </resources>

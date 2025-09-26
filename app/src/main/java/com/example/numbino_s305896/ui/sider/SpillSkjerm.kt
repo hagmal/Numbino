@@ -124,7 +124,7 @@ fun SpillSkjermUI (
         if (visDialog) {
             // Henter Avbryt-dialog-boksen fra komponenter i ui-pakka
             DialogBoks(
-                tittel = "",
+                tittel = stringResource(R.string.dialog_tittel_avbryt),
                 tekst = stringResource(R.string.dialog_tekst_avbryt),
                 bekreftTekst = stringResource(R.string.dialog_ja),
                 avbrytTekst = stringResource(R.string.dialog_nei),

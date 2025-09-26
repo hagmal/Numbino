@@ -1,8 +1,10 @@
 package com.example.numbino_s305896.ui.komponenter
 
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 
 @Composable
@@ -20,10 +22,10 @@ fun DialogBoks(
         title = { Text(tittel, color = MaterialTheme.colorScheme.onSurface) },
         text = { Text(tekst, color = MaterialTheme.colorScheme.onSurface) },
         confirmButton = {
-            DialogKnapp(tekst = bekreftTekst, onClick = vedBekreft)
+            Button(onClick = vedBekreft) { Text(bekreftTekst) }
         },
         dismissButton = {
-            DialogKnapp(tekst = avbrytTekst, onClick = vedAvbryt)
+            TextButton(onClick = vedAvbryt) { Text(avbrytTekst) }
         }
     )
 }

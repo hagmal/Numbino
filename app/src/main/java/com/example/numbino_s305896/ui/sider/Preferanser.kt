@@ -100,7 +100,10 @@ fun PreferanserSkjerm(vedTilbake: () -> Unit) {
                         MaterialTheme.colorScheme.primary
                     else
                         MaterialTheme.colorScheme.secondary,
-                    contentColor = MaterialTheme.colorScheme.onPrimary
+                    contentColor = if (valgtAntall == n)
+                        MaterialTheme.colorScheme.onPrimary
+                    else
+                        MaterialTheme.colorScheme.onSecondary
                 )
             )
             Spacer(Modifier.height(16.dp))

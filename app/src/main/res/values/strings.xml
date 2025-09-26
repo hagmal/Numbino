@@ -34,4 +34,5 @@
     <string name="tilbake">Tilbake</string>
 
     <string name="preferanser_forklaring">Velg antall oppgaver</string>
+    <string name="dialog_tittel_avbryt">Avslutte spillet?</string>
 </resources>
