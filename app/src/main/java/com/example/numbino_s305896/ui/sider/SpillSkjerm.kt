@@ -6,8 +6,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -84,70 +86,66 @@ fun SpillSkjermUI (
 ) {
     var visDialog by remember { mutableStateOf(false) }
 
-    Column (
-        modifier = Modifier
-            .fillMaxSize()
-            .background (MaterialTheme.colorScheme.background),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        SpillTopBar (onClose = { visDialog = true })
-
-        ProgressIndikator(
-            current = current,
-            total = total,
-            modifier = Modifier.padding(vertical = 6.dp)
-        )
-
-        // Viser tilbakemelding til brukeren basert på tilstand, dvs.
-        // figuren endrer seg
-        TilbakemeldingsBilde(tilstand = tilbakemelding)
-
-        Spacer(modifier = Modifier.padding(8.dp))
-
-        // Viser regnestykke og svarboks på en rad
-        RegnestykkeOgSvarBoks(regnestykke = regnestykke, svar = brukerSvar)
-
-        Spacer(modifier = Modifier.padding(8.dp))
-
-        // Rader med tallknapper
-        TallRad(tall = listOf(1, 2, 3), vedTallKlikk = vedTallKlikk)
-        Spacer(modifier = Modifier.padding(8.dp))
-
-        TallRad(tall = listOf(4, 5, 6), vedTallKlikk = vedTallKlikk)
-        Spacer(modifier = Modifier.padding(8.dp))
-
-        TallRad(tall = listOf(7, 8, 9), vedTallKlikk = vedTallKlikk)
-        Spacer(modifier = Modifier.padding(8.dp))
-
-        TallRad(tall = listOf(0), vedTallKlikk = vedTallKlikk)
-
-        if (visDialog) {
-            // Henter Avbryt-dialog-boksen fra komponenter i ui-pakka
-            DialogBoks(
-                tittel = stringResource(R.string.dialog_tittel_avbryt),
-                tekst = stringResource(R.string.dialog_tekst_avbryt),
-                bekreftTekst = stringResource(R.string.dialog_ja),
-                avbrytTekst = stringResource(R.string.dialog_nei),
-                kanLukkesUtenValg = false,
-                vedBekreft = {
-                    Log.d("avbryt", "X trykket")
-                    visDialog = false
-                    vedAvbrytKlikk()
-                },
-                vedAvbryt = { visDialog = false }
-            )
+    Scaffold (
+        topBar = { SpillTopBar(onClose = { visDialog = true })
         }
+    ) { innerPadding ->
+        Column (
+            modifier = Modifier
+                .fillMaxSize()
+                .background (MaterialTheme.colorScheme.background)
+                .padding(innerPadding),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            ProgressIndikator(current = current, total = total)
 
-        if (ferdig) {
-            DialogBoks(
-                tittel = stringResource(R.string.spill_ferdig),
-                tekst = stringResource(R.string.spill_paa_nytt),
-                bekreftTekst = stringResource(R.string.dialog_ja),
-                avbrytTekst = stringResource(R.string.dialog_nei),
-                kanLukkesUtenValg = false,
-                vedBekreft = vedStartPaNytt,
-                vedAvbryt = vedAvbrytKlikk
-            )
+            // Viser tilbakemelding til brukeren basert på tilstand, dvs.
+            // figuren endrer seg
+            TilbakemeldingsBilde(tilstand = tilbakemelding)
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            // Viser regnestykke og svarboks på en rad
+            RegnestykkeOgSvarBoks(regnestykke, brukerSvar)
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            // Rader med tallknapper
+            TallRad(listOf(1, 2, 3), vedTallKlikk)
+            Spacer(modifier = Modifier.height(8.dp))
+
+            TallRad(listOf(4, 5, 6), vedTallKlikk)
+            Spacer(modifier = Modifier.height(8.dp))
+
+            TallRad(listOf(7, 8, 9), vedTallKlikk)
+            Spacer(modifier = Modifier.height(8.dp))
+
+            TallRad(listOf(0), vedTallKlikk)
+
+            if (visDialog) {
+                DialogBoks(
+                    tittel = stringResource(R.string.dialog_tittel_avbryt),
+                    tekst = stringResource(R.string.dialog_tekst_avbryt),
+                    bekreftTekst = stringResource(R.string.dialog_ja),
+                    avbrytTekst = stringResource(R.string.dialog_nei),
+                    vedBekreft = {
+                        visDialog = false
+                        vedAvbrytKlikk()
+                    },
+                    vedAvbryt = { visDialog = false }
+                )
+            }
+
+            if (ferdig) {
+                DialogBoks(
+                    tittel = stringResource(R.string.spill_ferdig),
+                    tekst = stringResource(R.string.spill_paa_nytt),
+                    bekreftTekst = stringResource(R.string.dialog_ja),
+                    avbrytTekst = stringResource(R.string.dialog_nei),
+                    vedBekreft = vedStartPaNytt,
+                    vedAvbryt = vedAvbrytKlikk
+                )
+            }
         }
     }
 }
