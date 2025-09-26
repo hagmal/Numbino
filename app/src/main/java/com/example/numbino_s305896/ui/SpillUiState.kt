@@ -1,5 +1,6 @@
 package com.example.numbino_s305896.ui
 
+// Klasse for å samle info om tilstanden til spill-skjermen
 data class SpillUiState (
     val regnestykke: String = "",
     val brukerSvar: String = "",

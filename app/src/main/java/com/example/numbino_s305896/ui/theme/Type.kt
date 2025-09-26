@@ -8,6 +8,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.example.numbino_s305896.R
 
+// Font til overskrifter
 val Chewy = FontFamily(
     Font(R.font.chewy)
 )
