@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">" Numbino "</string>
+    <string name="start_spill">Starta spelet</string>
+    <string name="om_spill">Om spelet</string>
+    <string name="preferanser">Inställningar</string>
+    <string name="om_spill_overskrift">Om spelet</string>
+    <string name="om_spill_tekst">Numbino är ett enkelt mattespel för barn som övar på addition.
+        Spelet visar små räkneuppgifter, och barnet väljer rätt svar från sifferknapparna. När
+        spelet är klart kan man starta om eller ändra antalet uppgifter under "Inställningar".\n
+        \n
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. \n
+        \n
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
+    </string>
+    <string name="dialog_tekst_avbryt">Är du säker på att du vill avsluta spelet?</string>
+    <string name="dialog_ja">Ja</string>
+    <string name="dialog_nei">Nej</string>
+    <string name="spill_ferdig">Det finns inga fler uppgifter kvar</string>
+    <string name="spill_paa_nytt">Vill du spela igen?</string>
+    <string name="lagret_antall_log">Sparat antal uppgifter: %d</string>
+    <string name="tilbake">Tillbaka</string>
+    <string name="preferanser_forklaring">Välj antal uppgifter</string>
+</resources>

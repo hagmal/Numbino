@@ -28,9 +28,9 @@
     <string name="spill_paa_nytt"> Vil du spille på nytt? </string>
 
     <string name="lagret_antall_log"> Lagret antall oppgaver: %d</string>
-    <string name="valg_5"> 5 </string>
-    <string name="valg_10"> 10 </string>
-    <string name="valg_15"> 15 </string>
+    <string name="valg_5" translatable="false"> 5 </string>
+    <string name="valg_10" translatable="false"> 10 </string>
+    <string name="valg_15" translatable="false"> 15 </string>
 
     <string name="tilbake"> Tilbake </string>
 

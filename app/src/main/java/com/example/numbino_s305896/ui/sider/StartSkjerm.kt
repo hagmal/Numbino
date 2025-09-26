@@ -32,6 +32,7 @@ fun StartSkjermen (
     klikkOmSpill: () -> Unit, // Funksjon som kalles når "Om spill" trykkes
     klikkPreferanser: () -> Unit // Funksjon som kalles når "Preferanser" trykkes
 ) {
+
     // Stabler komponentene vertikalt
     Column (
         modifier = Modifier
@@ -40,7 +41,7 @@ fun StartSkjermen (
             .padding(16.dp), // Padding rundt kolonnen
         horizontalAlignment = Alignment.CenterHorizontally // Sentrerer innholdet horisontalt
     ) {
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(90.dp))
 
         Image(
             painter = painterResource(id = R.drawable.ic_numbino),
@@ -55,7 +56,7 @@ fun StartSkjermen (
         Text(
             text = stringResource(id = R.string.app_name),
             fontFamily = Chewy,
-            fontSize = 48.sp,
+            fontSize = 60.sp,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onBackground
         )
