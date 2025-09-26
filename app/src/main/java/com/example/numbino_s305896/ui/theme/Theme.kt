@@ -11,7 +11,7 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
-private val LightColorScheme = lightColorScheme(
+private val DarkColorScheme = darkColorScheme(
     primary = OransjeHovedfarge,
     onPrimary = OnOransje,
 
@@ -31,12 +31,12 @@ private val LightColorScheme = lightColorScheme(
 
 @Composable
 fun Numbino_s305896Theme(
-    darkTheme: Boolean = false,
+    darkTheme: Boolean = true,
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = LightColorScheme
+    val colorScheme = DarkColorScheme
     MaterialTheme (
         colorScheme = colorScheme,
         typography = Typography,

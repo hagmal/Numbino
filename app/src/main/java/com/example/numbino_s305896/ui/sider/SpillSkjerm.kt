@@ -3,9 +3,11 @@ package com.example.numbino_s305896.ui.sider
 import android.content.Context
 import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -99,6 +101,8 @@ fun SpillSkjermUI (
         ) {
             ProgressIndikator(current = current, total = total)
 
+            Spacer(modifier = Modifier.height(16.dp))
+
             // Viser tilbakemelding til brukeren basert på tilstand, dvs.
             // figuren endrer seg
             TilbakemeldingsBilde(tilstand = tilbakemelding)
@@ -108,19 +112,26 @@ fun SpillSkjermUI (
             // Viser regnestykke og svarboks på en rad
             RegnestykkeOgSvarBoks(regnestykke, brukerSvar)
 
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(14.dp))
 
-            // Rader med tallknapper
-            TallRad(listOf(1, 2, 3), vedTallKlikk)
-            Spacer(modifier = Modifier.height(8.dp))
+            Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                // Rader med tallknapper
+                TallRad(listOf(1, 2, 3), vedTallKlikk)
+                Spacer(modifier = Modifier.height(8.dp))
 
-            TallRad(listOf(4, 5, 6), vedTallKlikk)
-            Spacer(modifier = Modifier.height(8.dp))
+                TallRad(listOf(4, 5, 6), vedTallKlikk)
+                Spacer(modifier = Modifier.height(8.dp))
 
-            TallRad(listOf(7, 8, 9), vedTallKlikk)
-            Spacer(modifier = Modifier.height(8.dp))
+                TallRad(listOf(7, 8, 9), vedTallKlikk)
+                Spacer(modifier = Modifier.height(8.dp))
 
-            TallRad(listOf(0), vedTallKlikk)
+                TallRad(listOf(0), vedTallKlikk)
+            }
+
 
             if (visDialog) {
                 DialogBoks(

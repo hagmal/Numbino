@@ -12,6 +12,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -21,7 +23,9 @@ import com.example.numbino_s305896.ui.theme.Numbino_s305896Theme
 fun NummerKnappen(nummer: Int, vedKlikk: (Int) -> Unit) {
     Button(
         onClick = { vedKlikk(nummer) },
-        modifier = Modifier.size(72.dp),
+        modifier = Modifier
+            .size(72.dp)
+            .semantics { contentDescription = nummer.toString() },
         shape = RoundedCornerShape(12.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = MaterialTheme.colorScheme.secondary,

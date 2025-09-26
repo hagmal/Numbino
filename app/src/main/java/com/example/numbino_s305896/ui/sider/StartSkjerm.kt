@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -30,66 +31,67 @@ fun StartSkjermen (
     klikkOmSpill: () -> Unit, // Funksjon som kalles når "Om spill" trykkes
     klikkPreferanser: () -> Unit // Funksjon som kalles når "Preferanser" trykkes
 ) {
-
-    // Stabler komponentene vertikalt
-    Column (
-        modifier = Modifier
-            .fillMaxSize() // Fyller hele skjermens bredde og høyde
-            .background(MaterialTheme.colorScheme.background)
-            .padding(16.dp), // Padding rundt kolonnen
-        horizontalAlignment = Alignment.CenterHorizontally // Sentrerer innholdet horisontalt
-    ) {
-        Spacer(modifier = Modifier.height(90.dp))
-
-        Image(
-            painter = painterResource(id = R.drawable.ic_numbino),
-            contentDescription = "Numbino-figur",
+    Scaffold (
+        topBar = {}
+    ) { innerPadding ->
+        Column(
             modifier = Modifier
-                .height(200.dp)
-        )
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+                .padding(innerPadding),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Spacer(modifier = Modifier.height(90.dp))
 
-        Spacer(modifier = Modifier.height(12.dp))
-
-        // Overskrift
-        Text(
-            text = stringResource(id = R.string.app_name),
-            fontFamily = Chewy,
-            fontSize = 60.sp,
-            color = MaterialTheme.colorScheme.onBackground
-        )
-        Spacer(modifier = Modifier.height(200.dp))
-
-        // Bruker startknapp-komponenten
-        StartKnappen(
-            tekst = stringResource(id = R.string.start_spill),
-            onClick = klikkStartSpill,
-            farge = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.primary,
-                contentColor = MaterialTheme.colorScheme.onPrimary
+            Image(
+                painter = painterResource(id = R.drawable.ic_numbino),
+                contentDescription = stringResource(R.string.cd_maskot),
+                modifier = Modifier.height(200.dp)
             )
-        )
 
-        Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(12.dp))
 
-        StartKnappen(
-            tekst = stringResource(id = R.string.om_spill),
-            onClick = klikkOmSpill,
-            farge = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.secondary,
-                contentColor = MaterialTheme.colorScheme.onSecondary
+            // Overskrift
+            Text(
+                text = stringResource(id = R.string.app_name),
+                fontFamily = Chewy,
+                fontSize = 60.sp,
+                color = MaterialTheme.colorScheme.onBackground
             )
-        )
+            Spacer(modifier = Modifier.height(200.dp))
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        StartKnappen(
-            tekst = stringResource(id = R.string.preferanser),
-            onClick = klikkPreferanser,
-            farge = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.secondary,
-                contentColor = MaterialTheme.colorScheme.onSecondary
+            // Bruker startknapp-komponenten
+            StartKnappen(
+                tekst = stringResource(id = R.string.start_spill),
+                onClick = klikkStartSpill,
+                farge = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                )
             )
-        )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            StartKnappen(
+                tekst = stringResource(id = R.string.om_spill),
+                onClick = klikkOmSpill,
+                farge = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.secondary,
+                    contentColor = MaterialTheme.colorScheme.onSecondary
+                )
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            StartKnappen(
+                tekst = stringResource(id = R.string.preferanser),
+                onClick = klikkPreferanser,
+                farge = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.secondary,
+                    contentColor = MaterialTheme.colorScheme.onSecondary
+                )
+            )
+        }
     }
 }
 

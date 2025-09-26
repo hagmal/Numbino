@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -26,41 +27,42 @@ import com.example.numbino_s305896.ui.theme.Numbino_s305896Theme
 
 @Composable
 fun OmSpillet(vedTilbake: () -> Unit) {
-    Column (
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        TilbakeTopBar(vedTilbake = vedTilbake)
-
-        Spacer(modifier = Modifier.height(10.dp))
-
-        Image(
-            painter = painterResource(id = R.drawable.ic_numbino),
-            contentDescription = null,
+    Scaffold(topBar = { TilbakeTopBar(vedTilbake = vedTilbake) }
+    ){ innerPadding ->
+        Column (
             modifier = Modifier
-                .size(120.dp)
-                .padding(bottom = 16.dp)
-        )
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+                .padding(innerPadding),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Spacer(modifier = Modifier.height(12.dp))
 
-        Text(
-            text = stringResource(id = R.string.om_spill_overskrift),
-            fontFamily = Chewy,
-            fontSize = 40.sp,
-            color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
+            Image(
+                painter = painterResource(id = R.drawable.ic_numbino),
+                contentDescription = stringResource(R.string.cd_maskot),
+                modifier = Modifier
+                    .size(120.dp)
+                    .padding(bottom = 16.dp)
+            )
 
-        Text(
-            text = stringResource(id = R.string.om_spill_tekst),
-            style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-        )
+            Text(
+                text = stringResource(id = R.string.om_spill_overskrift),
+                fontFamily = Chewy,
+                fontSize = 40.sp,
+                color = MaterialTheme.colorScheme.onBackground,
+                modifier = Modifier.padding(bottom = 16.dp)
+            )
+
+            Text(
+                text = stringResource(id = R.string.om_spill_tekst),
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onBackground,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp)
+            )
+        }
     }
 }
 

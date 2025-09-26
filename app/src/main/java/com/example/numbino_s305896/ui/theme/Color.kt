@@ -7,7 +7,7 @@ val OransjeHovedfarge = Color(0xFFFFB74D)
 val OnOransje = Color (0xFF000000) // Svart tekst på oransje
 
 // Sekundær (mindre viktige knapper)
-val  BlaaSekundaer = Color (0xFF5E4DFF)
+val  BlaaSekundaer = Color(0xFF7869FF)
 val OnBlaa = Color (0xFFFFFFFF) // Hvit tekst på blå
 
 // Tertiær/aksenter

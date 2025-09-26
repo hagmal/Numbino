@@ -20,6 +20,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -52,61 +53,61 @@ fun PreferanserSkjerm(vedTilbake: () -> Unit) {
         mutableIntStateOf(sharedPrefs.getInt("antall_oppgaver", 5))
     }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        // Topbar
-        TilbakeTopBar(vedTilbake = vedTilbake)
+    Scaffold (
+        topBar = { TilbakeTopBar(vedTilbake = vedTilbake) }
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+                .padding(innerPadding),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Spacer(Modifier.height(12.dp))
 
-        Spacer(Modifier.height(12.dp))
-
-        // Liten figur for helhet (valgfritt)
-        Image(
-            painter = painterResource(id = R.drawable.ic_numbino), // <- bytt til din figur
-            contentDescription = null,
-            modifier = Modifier.size(120.dp)
-        )
-
-        Spacer(Modifier.height(8.dp))
-
-        // Tittel
-        Text(
-            text = stringResource(R.string.preferanser),
-            fontFamily = Chewy,
-            fontSize = 40.sp,
-            color = MaterialTheme.colorScheme.onBackground
-        )
-        Text(
-            text = stringResource(R.string.preferanser_forklaring),
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.padding(bottom = 24.dp)
-        )
-
-        // Bruk de samme store knappene som på startskjermen
-        listOf(5, 10, 15).forEach { n ->
-            StartKnappen(
-                tekst = n.toString(),
-                onClick = {
-                    valgtAntall = n
-                    sharedPrefs.edit().putInt("antall_oppgaver", n).apply()
-                },
-                farge = ButtonDefaults.buttonColors(
-                    containerColor = if (valgtAntall == n)
-                        MaterialTheme.colorScheme.primary
-                    else
-                        MaterialTheme.colorScheme.secondary,
-                    contentColor = if (valgtAntall == n)
-                        MaterialTheme.colorScheme.onPrimary
-                    else
-                        MaterialTheme.colorScheme.onSecondary
-                )
+            Image(
+                painter = painterResource(id = R.drawable.ic_numbino), // <- bytt til din figur
+                contentDescription = stringResource(R.string.cd_maskot),
+                modifier = Modifier.size(120.dp)
             )
-            Spacer(Modifier.height(16.dp))
+
+            Spacer(Modifier.height(8.dp))
+
+            // Tittel
+            Text(
+                text = stringResource(R.string.preferanser),
+                fontFamily = Chewy,
+                fontSize = 40.sp,
+                color = MaterialTheme.colorScheme.onBackground
+            )
+            Text(
+                text = stringResource(R.string.preferanser_forklaring),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onBackground,
+                modifier = Modifier.padding(bottom = 24.dp)
+            )
+
+            // Bruk de samme store knappene som på startskjermen
+            listOf(5, 10, 15).forEach { n ->
+                StartKnappen(
+                    tekst = n.toString(),
+                    onClick = {
+                        valgtAntall = n
+                        sharedPrefs.edit().putInt("antall_oppgaver", n).apply()
+                    },
+                    farge = ButtonDefaults.buttonColors(
+                        containerColor = if (valgtAntall == n)
+                            MaterialTheme.colorScheme.primary
+                        else
+                            MaterialTheme.colorScheme.secondary,
+                        contentColor = if (valgtAntall == n)
+                            MaterialTheme.colorScheme.onPrimary
+                        else
+                            MaterialTheme.colorScheme.onSecondary
+                    )
+                )
+                Spacer(Modifier.height(16.dp))
+            }
         }
     }
 }

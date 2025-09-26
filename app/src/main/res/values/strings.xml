@@ -26,7 +26,7 @@
     <string name="spill_ferdig">Det er ikke flere oppgaver igjen</string>
     <string name="spill_paa_nytt">Vil du spille på nytt?</string>
 
-    <string name="lagret_antall_log">Lagret antall oppgaver: %d</string>
+    <string name="lagret_antall_log">Lagret antall oppgaver: %1$d</string>
     <string name="valg_5" translatable="false">5</string>
     <string name="valg_10" translatable="false">10</string>
     <string name="valg_15" translatable="false">15</string>
@@ -35,4 +35,7 @@
 
     <string name="preferanser_forklaring">Velg antall oppgaver</string>
     <string name="dialog_tittel_avbryt">Avslutte spillet?</string>
+    <string name="cd_maskot">Maskoten til Numbino</string>
+
+    <string name="progresstekst">Oppgave %1$d av %2$d</string>
 </resources>

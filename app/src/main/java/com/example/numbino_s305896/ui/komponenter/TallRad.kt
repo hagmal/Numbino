@@ -4,7 +4,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun TallRad(
@@ -13,10 +15,10 @@ fun TallRad(
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceEvenly
+        horizontalArrangement = Arrangement.spacedBy(28.dp, Alignment.CenterHorizontally)
     ) {
         tall.forEach { nummer ->
-            NummerKnappen(nummer = nummer, vedKlikk = vedTallKlikk)
+            NummerKnappen(nummer, vedTallKlikk)
         }
     }
 }
