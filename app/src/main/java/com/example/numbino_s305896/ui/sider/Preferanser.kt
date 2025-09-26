@@ -80,9 +80,10 @@ fun PreferanserSkjerm(vedTilbake: () -> Unit) {
                 fontSize = 40.sp,
                 color = MaterialTheme.colorScheme.onBackground
             )
+            Spacer(Modifier.height(8.dp))
             Text(
                 text = stringResource(R.string.preferanser_forklaring),
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.padding(bottom = 24.dp)
             )
@@ -97,11 +98,11 @@ fun PreferanserSkjerm(vedTilbake: () -> Unit) {
                     },
                     farge = ButtonDefaults.buttonColors(
                         containerColor = if (valgtAntall == n)
-                            MaterialTheme.colorScheme.primary
+                            MaterialTheme.colorScheme.tertiary
                         else
                             MaterialTheme.colorScheme.secondary,
                         contentColor = if (valgtAntall == n)
-                            MaterialTheme.colorScheme.onPrimary
+                            MaterialTheme.colorScheme.onTertiary
                         else
                             MaterialTheme.colorScheme.onSecondary
                     )
