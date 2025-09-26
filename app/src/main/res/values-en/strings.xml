@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">" Numbino "</string>
+    <string name="start_spill">Start game</string>
+    <string name="om_spill">About</string>
+    <string name="preferanser">Preferences</string>
+    <string name="om_spill_overskrift">About the game</string>
+    <string name="om_spill_tekst">Numbino is a simple math game for children practicing addition.
+        The game shows small math problems, and the child choose the correct answer from the number
+        buttons. When the game is finished, you can start again or change the number of tasks under
+        "Preferences". \n
+        \n
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. \n
+        \n
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
+    </string>
+    <string name="dialog_tekst_avbryt">Are you sure you want to quit the game?</string>
+    <string name="dialog_ja">Yes</string>
+    <string name="dialog_nei">No</string>
+    <string name="spill_ferdig">No more tasks left</string>
+    <string name="spill_paa_nytt">Do you want to play again?</string>
+    <string name="lagret_antall_log">Saved number of tasks: %d</string>
+    <string name="valg_5">5</string>
+    <string name="valg_10">10</string>
+    <string name="valg_15">15</string>
+    <string name="tilbake">Back</string>
+    <string name="preferanser_forklaring">Choose number of tasks</string>
+</resources>

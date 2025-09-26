@@ -51,12 +51,6 @@ fun StartSkjermen (
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        Text(
-            text = stringResource(id = R.string.velkommen_til),
-            style = MaterialTheme.typography.titleMedium,
-            color = MaterialTheme.colorScheme.onBackground
-        )
-
         // Overskrift
         Text(
             text = stringResource(id = R.string.app_name),

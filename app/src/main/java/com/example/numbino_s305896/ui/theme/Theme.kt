@@ -22,9 +22,7 @@ private val DarkColorScheme = darkColorScheme(
     onTertiary = OnTurkis,
 
     background = Bakgrunn,
-    onBackground = OnBakgrunn,
-
-    surfaceVariant = BakgrunnAlternativ,
+    onBackground = OnBakgrunn
 )
 
 
