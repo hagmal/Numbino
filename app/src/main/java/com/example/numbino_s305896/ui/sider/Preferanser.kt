@@ -19,6 +19,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -79,56 +80,32 @@ fun PreferanserSkjerm(vedTilbake: () -> Unit) {
 
         Spacer(Modifier.height(20.dp))
 
-        // Seksjonskort med valg
-        Surface(
-            color = MaterialTheme.colorScheme.secondary,
-            shape = RoundedCornerShape(16.dp),
-            shadowElevation = 2.dp,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp)
-        ) {
-            Column(
-                modifier = Modifier.padding(16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = stringResource(R.string.preferanser_forklaring),
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onSurface
-                )
-
-                Spacer(Modifier.height(12.dp))
-
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-                    listOf(5, 10, 15).forEach { n ->
-                        val selected = (valgtAntall == n)
-                        Button(
-                            onClick = {
-                                valgtAntall = n
-                                sharedPrefs.edit().putInt("antall_oppgaver", n).apply()
-                                Log.d("Preferanser", context.getString(R.string.lagret_antall_log, n))
-                            },
-                            shape = RoundedCornerShape(12.dp),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = if (selected)
-                                    MaterialTheme.colorScheme.primary
-                                else
-                                    MaterialTheme.colorScheme.secondaryContainer,
-                                contentColor = if (selected)
-                                    MaterialTheme.colorScheme.onPrimary
-                                else
-                                    MaterialTheme.colorScheme.onSecondaryContainer
-                            ),
-                            modifier = Modifier.weight(1f)
-                        ) {
-                            Text(text = n.toString(), fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
-                        }
+        listOf(5, 10, 15).forEach { n ->
+            Row (
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable{
+                        valgtAntall = n
+                        sharedPrefs.edit().putInt("antall_oppgaver", n).apply()
                     }
-                }
+                    .padding(8.dp)
+            ){
+                RadioButton(
+                    selected = (valgtAntall == n),
+                    onClick = {
+                        valgtAntall = n
+                        sharedPrefs.edit().putInt("antall_oppgaver", n).apply()
+                    },
+                    colors = RadioButtonDefaults.colors(
+                        selectedColor = MaterialTheme.colorScheme.primary
+                    )
+                )
+                Text(
+                    text = n.toString(),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onBackground
+                )
             }
         }
     }

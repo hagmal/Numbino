@@ -36,6 +36,4 @@ fun ProgressIndikator(current: Int, total: Int, modifier: Modifier = Modifier) {
             )
         }
     }
-
-
 }

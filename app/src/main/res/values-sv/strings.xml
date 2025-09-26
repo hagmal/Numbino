@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">" Numbino "</string>
+    <string name="app_name">Numbino</string>
     <string name="start_spill">Starta spelet</string>
     <string name="om_spill">Om spelet</string>
     <string name="preferanser">Inställningar</string>
@@ -17,8 +17,7 @@
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
-    </string>
+        commodo consequat.</string>
     <string name="dialog_tekst_avbryt">Är du säker på att du vill avsluta spelet?</string>
     <string name="dialog_ja">Ja</string>
     <string name="dialog_nei">Nej</string>
