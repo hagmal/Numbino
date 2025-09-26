@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.numbino_s305896.R
 import com.example.numbino_s305896.ui.komponenter.TilbakeTopBar
+import com.example.numbino_s305896.ui.theme.Chewy
 import com.example.numbino_s305896.ui.theme.Numbino_s305896Theme
 
 @Composable
@@ -46,7 +47,8 @@ fun OmSpillet(vedTilbake: () -> Unit) {
 
         Text(
             text = stringResource(id = R.string.om_spill_overskrift),
-            style = MaterialTheme.typography.headlineMedium,
+            fontFamily = Chewy,
+            fontSize = 40.sp,
             color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.padding(bottom = 16.dp)
         )

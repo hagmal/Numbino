@@ -55,7 +55,6 @@ fun StartSkjermen (
             text = stringResource(id = R.string.app_name),
             fontFamily = Chewy,
             fontSize = 60.sp,
-            fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onBackground
         )
         Spacer(modifier = Modifier.height(200.dp))

@@ -37,7 +37,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.numbino_s305896.R
+import com.example.numbino_s305896.ui.komponenter.StartKnappen
 import com.example.numbino_s305896.ui.komponenter.TilbakeTopBar
+import com.example.numbino_s305896.ui.theme.Chewy
 import com.example.numbino_s305896.ui.theme.Numbino_s305896Theme
 
 @Composable
@@ -74,39 +76,34 @@ fun PreferanserSkjerm(vedTilbake: () -> Unit) {
         // Tittel
         Text(
             text = stringResource(R.string.preferanser),
-            style = MaterialTheme.typography.headlineMedium,
+            fontFamily = Chewy,
+            fontSize = 40.sp,
             color = MaterialTheme.colorScheme.onBackground
         )
+        Text(
+            text = stringResource(R.string.preferanser_forklaring),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onBackground,
+            modifier = Modifier.padding(bottom = 24.dp)
+        )
 
-        Spacer(Modifier.height(20.dp))
-
+        // Bruk de samme store knappene som på startskjermen
         listOf(5, 10, 15).forEach { n ->
-            Row (
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable{
-                        valgtAntall = n
-                        sharedPrefs.edit().putInt("antall_oppgaver", n).apply()
-                    }
-                    .padding(8.dp)
-            ){
-                RadioButton(
-                    selected = (valgtAntall == n),
-                    onClick = {
-                        valgtAntall = n
-                        sharedPrefs.edit().putInt("antall_oppgaver", n).apply()
-                    },
-                    colors = RadioButtonDefaults.colors(
-                        selectedColor = MaterialTheme.colorScheme.primary
-                    )
+            StartKnappen(
+                tekst = n.toString(),
+                onClick = {
+                    valgtAntall = n
+                    sharedPrefs.edit().putInt("antall_oppgaver", n).apply()
+                },
+                farge = ButtonDefaults.buttonColors(
+                    containerColor = if (valgtAntall == n)
+                        MaterialTheme.colorScheme.primary
+                    else
+                        MaterialTheme.colorScheme.secondary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
                 )
-                Text(
-                    text = n.toString(),
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onBackground
-                )
-            }
+            )
+            Spacer(Modifier.height(16.dp))
         }
     }
 }
