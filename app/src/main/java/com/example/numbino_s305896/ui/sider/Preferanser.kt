@@ -68,7 +68,7 @@ fun PreferanserSkjerm(vedTilbake: () -> Unit) {
         Image(
             painter = painterResource(id = R.drawable.ic_numbino), // <- bytt til din figur
             contentDescription = null,
-            modifier = Modifier.size(72.dp)
+            modifier = Modifier.size(120.dp)
         )
 
         Spacer(Modifier.height(8.dp))
