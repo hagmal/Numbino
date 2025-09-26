@@ -18,11 +18,12 @@ import com.example.numbino_s305896.ui.theme.Numbino_s305896Theme
 fun StartKnappen(
     tekst: String, // Teksten som skal vises på knappen
     onClick: () -> Unit, // Funksjonen som kalles på når knappen trykkes
-    farge: ButtonColors = ButtonDefaults.buttonColors() // Farger for knappen
-) {
+    farge: ButtonColors = ButtonDefaults.buttonColors(), // Farger for knappen
+    modifier: Modifier = Modifier
+    ) {
     Button(
         onClick = onClick,
-        modifier = Modifier.fillMaxWidth(0.8f),
+        modifier = modifier.fillMaxWidth(0.8f),
         shape = RoundedCornerShape(50.dp), // Gir knappen avrundede hjørner
         colors = farge
     ) {
@@ -30,17 +31,6 @@ fun StartKnappen(
         Text(
             text = tekst,
             fontSize = 24.sp, // Skriftstørrelse
-            modifier = Modifier.padding(12.dp)) // Padding rundt teksten
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun StartKnappPreview() {
-    Numbino_s305896Theme {
-        StartKnappen(
-            tekst = "Start spill",
-            onClick = {}
-        )
+            modifier = modifier.padding(12.dp)) // Padding rundt teksten
     }
 }

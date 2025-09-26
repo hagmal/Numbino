@@ -69,12 +69,11 @@ fun StartSkjermen (
                     contentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
-
             Spacer(modifier = Modifier.height(16.dp))
 
             StartKnappen(
-                tekst = stringResource(id = R.string.om_spill),
-                onClick = klikkOmSpill,
+                tekst = stringResource(id = R.string.preferanser),
+                onClick = klikkPreferanser,
                 farge = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.secondary,
                     contentColor = MaterialTheme.colorScheme.onSecondary
@@ -84,8 +83,8 @@ fun StartSkjermen (
             Spacer(modifier = Modifier.height(16.dp))
 
             StartKnappen(
-                tekst = stringResource(id = R.string.preferanser),
-                onClick = klikkPreferanser,
+                tekst = stringResource(id = R.string.om_spill),
+                onClick = klikkOmSpill,
                 farge = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.secondary,
                     contentColor = MaterialTheme.colorScheme.onSecondary

@@ -22,26 +22,28 @@ import com.example.numbino_s305896.ui.theme.Numbino_s305896Theme
 
 @Composable
 fun RegnestykkeOgSvarBoks(
-    regnestykke: String,
-    svar: String,
+    regnestykke: String, // Regnestykket som skal vises
+    svar: String, // Brukerens svar på regnestykket
     modifier: Modifier = Modifier
 ) {
     Row (
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(10.dp)
     ) {
+        // Viser regnestykket
         Text(
             text = regnestykke,
             fontSize = 48.sp,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.padding(end = 8.dp, bottom = 8.dp),
+            modifier = modifier.padding(end = 8.dp, bottom = 8.dp),
         )
+        // Boks som viser svaret (når brukeren har trykket på et tall)
         Box(
-            modifier = Modifier
+            modifier = modifier
                 .size(72.dp)
                 .clip(RoundedCornerShape(12.dp))
                 .background(MaterialTheme.colorScheme.surfaceVariant),
@@ -58,19 +60,3 @@ fun RegnestykkeOgSvarBoks(
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun RegnestykkeOgSvarBoksPreview() {
-    Numbino_s305896Theme {
-        Box(
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.background)
-                .padding(16.dp)
-                .fillMaxWidth()
-        ) {
-            RegnestykkeOgSvarBoks(
-                regnestykke = "2 + 2 = ",
-                svar = "4")
-        }
-    }
-}

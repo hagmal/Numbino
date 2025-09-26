@@ -19,25 +19,32 @@ import androidx.compose.ui.unit.dp
 import com.example.numbino_s305896.R
 
 @Composable
-fun ProgressIndikator(current: Int, total: Int, modifier: Modifier = Modifier) {
+fun ProgressIndikator(
+    current: Int, // Hvor langt brukeren har kommet i spillet
+    total: Int, // Totalt antall oppgaver
+    modifier: Modifier = Modifier
+) {
+    // For skjermleser. Lager streng som beskriver hvor langt brukeren har kommet
     val cd = stringResource(R.string.progresstekst, current, total)
 
     Row(
         horizontalArrangement = Arrangement.Center,
         modifier = modifier
             .fillMaxWidth()
-            .semantics { contentDescription = cd }
+            .semantics { contentDescription = cd } // For skjemlesere
     ) {
+        // En runding for hver oppgave
         for (i in 1..total) {
-            Box(
+            Box( // Lager en sirkel for hver oppgave (starter som en boks)
                 modifier = Modifier
-                    .size(20.dp)
-                    .padding(4.dp)
-                    .clip(CircleShape)
+                    .size(20.dp) // Størrelse på rundingene
+                    .padding(4.dp) // Mellomrom mellom rundingene
+                    .clip(CircleShape) // Gjør boksene runde
                     .background(
-                        if (i <= current) {
-                            MaterialTheme.colorScheme.tertiary
+                        if (i <= current) { // Hvis man har nådd denne oppgaven
+                            MaterialTheme.colorScheme.tertiary // Farg rundingen turkis
                         } else {
+                            // Oppgavene som ikke er nådd enda
                             MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f)
                         }
                     )

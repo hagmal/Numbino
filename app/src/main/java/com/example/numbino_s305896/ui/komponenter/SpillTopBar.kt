@@ -15,20 +15,20 @@ import com.example.numbino_s305896.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SpillTopBar(onClose: () -> Unit) {
+fun SpillTopBar(onClose: () -> Unit) { // Funksjon som kalles når "Lukk" trykkes
     TopAppBar(
-        title = {},
+        title = {}, // Ingen tittel, kun ikon vil vises
         actions = {
             IconButton(onClick = onClose) {
                 Icon(
-                    imageVector = Icons.Default.Close,
+                    imageVector = Icons.Default.Close, // Standard X-ikon
                     contentDescription = stringResource(R.string.tilbake),
                     tint = MaterialTheme.colorScheme.onBackground
                 )
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = Color.Transparent
+            containerColor = Color.Transparent // Gjennomsiktig bakgrunn på topbaren
         )
     )
 }

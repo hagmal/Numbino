@@ -38,4 +38,7 @@
     <string name="cd_maskot">Maskoten til Numbino</string>
 
     <string name="progresstekst">Oppgave %1$d av %2$d</string>
+    <string name="cd_riktig_svar">Riktig svar</string>
+    <string name="cd_feil_svar">Feil svar</string>
+    <string name="cd_venter">Venter på svar</string>
 </resources>

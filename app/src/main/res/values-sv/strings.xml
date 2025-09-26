@@ -29,4 +29,7 @@
     <string name="dialog_tittel_avbryt">Avsluta spelet?</string>
     <string name="cd_maskot">Maskoten för Numbino</string>
     <string name="progresstekst">Uppgift %1$d av %2$d</string>
+    <string name="cd_riktig_svar">Rätt svar</string>
+    <string name="cd_feil_svar">Fel svar</string>
+    <string name="cd_venter">Väntar på svar</string>
 </resources>

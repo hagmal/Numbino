@@ -10,13 +10,18 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun TallRad(
-    tall: List<Int>,
-    vedTallKlikk: (Int) -> Unit
+    tall: List<Int>, // Lista med tall som skal vises i raden
+    vedTallKlikk: (Int) -> Unit, // Funksjon som kalles når et tall trykkes på
+    modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(28.dp, Alignment.CenterHorizontally)
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(
+            28.dp, // Mellomrom mellom knappene
+            Alignment.CenterHorizontally
+        )
     ) {
+        // For hvert tall i lista opprettes en NummerKnapp
         tall.forEach { nummer ->
             NummerKnappen(nummer, vedTallKlikk)
         }

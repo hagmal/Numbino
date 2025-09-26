@@ -9,21 +9,25 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun DialogBoks(
-    tittel: String,
-    tekst: String,
-    bekreftTekst: String,
-    avbrytTekst: String,
-    vedBekreft: () -> Unit,
-    vedAvbryt: () -> Unit,
-    kanLukkesUtenValg: Boolean = false
+    tittel: String, // Titteltekst i dialogboksen
+    tekst: String, // Tekst idialogboks
+    bekreftTekst: String, // Tekst på bekreft-knappen (ja)
+    avbrytTekst: String, // Tekst på avbryt-knappen (nei)
+    vedBekreft: () -> Unit, // Funksjon som kalles når "Bekreft" trykkes
+    vedAvbryt: () -> Unit // Funksjon som kalles når "Avbryt" trykkes
 ) {
     AlertDialog(
-        onDismissRequest = { if (kanLukkesUtenValg) vedAvbryt() },
+        // Hvis brukeren trykker utenfor dialogen, vil dialogboksen lukkes
+        onDismissRequest = { vedAvbryt() },
+
         title = { Text(tittel, color = MaterialTheme.colorScheme.onSurface) },
+
         text = { Text(tekst, color = MaterialTheme.colorScheme.onSurface) },
+        // Bekreft-knappen
         confirmButton = {
             Button(onClick = vedBekreft) { Text(bekreftTekst) }
         },
+        // Avbryt-knappen
         dismissButton = {
             TextButton(onClick = vedAvbryt) { Text(avbrytTekst) }
         }

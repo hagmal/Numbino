@@ -11,13 +11,12 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.numbino_s305896.R
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TilbakeTopBar(vedTilbake: () -> Unit) {
+fun TilbakeTopBar(vedTilbake: () -> Unit) { // Funksjon som kalles når "Tilbake" trykkes
     TopAppBar(
         title = {},
         navigationIcon = {
@@ -32,13 +31,5 @@ fun TilbakeTopBar(vedTilbake: () -> Unit) {
             containerColor = Color.Transparent,
             navigationIconContentColor = MaterialTheme.colorScheme.onBackground
         )
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun TilbakeTopBarPreview() {
-    TilbakeTopBar(
-        vedTilbake = {}
     )
 }
