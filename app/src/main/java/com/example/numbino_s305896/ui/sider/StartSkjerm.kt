@@ -16,14 +16,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.numbino_s305896.R
 import com.example.numbino_s305896.ui.komponenter.StartKnappen
 import com.example.numbino_s305896.ui.theme.Chewy
-import com.example.numbino_s305896.ui.theme.Numbino_s305896Theme
 
 @Composable
 fun StartSkjermen (
@@ -31,9 +28,8 @@ fun StartSkjermen (
     klikkOmSpill: () -> Unit, // Funksjon som kalles når "Om spill" trykkes
     klikkPreferanser: () -> Unit // Funksjon som kalles når "Preferanser" trykkes
 ) {
-    Scaffold (
-        topBar = {}
-    ) { innerPadding ->
+    Scaffold ()
+    { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -42,7 +38,7 @@ fun StartSkjermen (
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(90.dp))
-
+            // Bilde av figuren
             Image(
                 painter = painterResource(id = R.drawable.ic_numbino),
                 contentDescription = stringResource(R.string.cd_maskot),
@@ -60,7 +56,7 @@ fun StartSkjermen (
             )
             Spacer(modifier = Modifier.height(200.dp))
 
-            // Bruker startknapp-komponenten
+            // Start spill-knapp
             StartKnappen(
                 tekst = stringResource(id = R.string.start_spill),
                 onClick = klikkStartSpill,
@@ -70,7 +66,7 @@ fun StartSkjermen (
                 )
             )
             Spacer(modifier = Modifier.height(16.dp))
-
+            //Preferanser-knapp
             StartKnappen(
                 tekst = stringResource(id = R.string.preferanser),
                 onClick = klikkPreferanser,
@@ -81,7 +77,7 @@ fun StartSkjermen (
             )
 
             Spacer(modifier = Modifier.height(16.dp))
-
+            //Om spill-knapp
             StartKnappen(
                 tekst = stringResource(id = R.string.om_spill),
                 onClick = klikkOmSpill,
@@ -91,17 +87,5 @@ fun StartSkjermen (
                 )
             )
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun StartSkjermPreview() {
-    Numbino_s305896Theme {
-        StartSkjermen(
-            klikkStartSpill = {},
-            klikkOmSpill = {},
-            klikkPreferanser = {}
-        )
     }
 }

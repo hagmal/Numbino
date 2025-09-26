@@ -1,7 +1,6 @@
 package com.example.numbino_s305896.ui.sider
 
 import android.content.Context
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,9 +18,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.numbino_s305896.ui.theme.Numbino_s305896Theme
 import com.example.numbino_s305896.R
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
@@ -44,20 +41,25 @@ fun SpillSkjermen (
     vedAvbryt: () -> Unit
 ) {
     val ctx = LocalContext.current
+
+    // Leser antall valgte oppgaver fra shared preferences
     val prefs = remember {ctx.getSharedPreferences("numbino_prefs", Context.MODE_PRIVATE)}
     val antall = prefs.getInt("antall_oppgaver", 5)
 
+    // Laster oppgaver og fasit fra regnestykkerOgSvar.xml
     val oppgaver = stringArrayResource(R.array.regnestykker).toList()
     val fasit = integerArrayResource(R.array.svar).toList()
 
-    LaunchedEffect(Unit) {
+    // Starter et nytt spill når skjermen opprettes
+        LaunchedEffect(Unit) {
         spillViewModel.alleRegnestykker = oppgaver
         spillViewModel.alleSvar = fasit
         spillViewModel.startNyttSpill(antall)
     }
-
+    // Henter tilstanden til spill-skjermen fra ViewModel
     val spillUiState by spillViewModel.uiState.collectAsState()
 
+    // Sender tilstanden til skjermen (UI)
     SpillSkjermUI(
         regnestykke = spillUiState.regnestykke,
         brukerSvar = spillUiState.brukerSvar,
@@ -77,15 +79,16 @@ fun SpillSkjermen (
 @Composable
 fun SpillSkjermUI (
     regnestykke: String, // Regnestykket som skal vises
-    brukerSvar: String,
+    brukerSvar: String, // Brukers svar på regnestykket
     tilbakemelding: Int, // Tilstand for visuell tilbakemelding (1=riktig, 2=feil, 3=venter)
-    ferdig: Boolean,
+    ferdig: Boolean, // True når alle regnestykker er brukt
     vedTallKlikk: (Int) -> Unit, // Funksjon som kalles når tallknappen trykkes
     vedAvbrytKlikk: () -> Unit, // Funksjon for avbryt-knapp
-    vedStartPaNytt: () -> Unit,
-    current: Int,
-    total: Int
+    vedStartPaNytt: () -> Unit, // Starter nytt spill
+    current: Int, // Nåværende oppgave
+    total: Int // Antall oppgaver i dette spillet
 ) {
+    // Styrer avslutt?-dialog
     var visDialog by remember { mutableStateOf(false) }
 
     Scaffold (
@@ -99,17 +102,17 @@ fun SpillSkjermUI (
                 .padding(innerPadding),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            // Progresjonsindikator som viser hvor mange oppgaver brukeren har tatt og har igjen
             ProgressIndikator(current = current, total = total)
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Viser tilbakemelding til brukeren basert på tilstand, dvs.
-            // figuren endrer seg
+            // Figur som gir visuell tilbakemelding (riktig, feil eller venter)
             TilbakemeldingsBilde(tilstand = tilbakemelding)
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            // Viser regnestykke og svarboks på en rad
+            // Regnestykke og svarfelt
             RegnestykkeOgSvarBoks(regnestykke, brukerSvar)
 
             Spacer(modifier = Modifier.height(14.dp))
@@ -132,7 +135,7 @@ fun SpillSkjermUI (
                 TallRad(listOf(0), vedTallKlikk)
             }
 
-
+            // Avslutte spill dialogboks
             if (visDialog) {
                 DialogBoks(
                     tittel = stringResource(R.string.dialog_tittel_avbryt),
@@ -146,7 +149,7 @@ fun SpillSkjermUI (
                     vedAvbryt = { visDialog = false }
                 )
             }
-
+            // Ikke flere oppgaver igjen, dialogboks
             if (ferdig) {
                 DialogBoks(
                     tittel = stringResource(R.string.spill_ferdig),
@@ -158,26 +161,5 @@ fun SpillSkjermUI (
                 )
             }
         }
-    }
-}
-
-
-
-
-@Preview(showBackground = true)
-@Composable
-fun SpillSkjermPreview() {
-    Numbino_s305896Theme {
-        SpillSkjermUI(
-            regnestykke = "2 + 2 = ",
-            tilbakemelding = 3,
-            brukerSvar = "4",
-            vedTallKlikk = {},
-            vedAvbrytKlikk =  {},
-            ferdig = false,
-            vedStartPaNytt = {},
-            current = 2,
-            total = 5
-        )
     }
 }

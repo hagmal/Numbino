@@ -36,5 +36,4 @@ fun AppNavHost (navController: NavHostController){
             )
         }
     }
-
 }
