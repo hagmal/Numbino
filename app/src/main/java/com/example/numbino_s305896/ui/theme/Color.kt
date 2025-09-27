@@ -10,7 +10,7 @@ val OnOransje = Color (0xFF000000) // Svart tekst
 val  BlaaSekundaer = Color(0xFF7869FF)
 val OnBlaa = Color (0xFFFFFFFF) // Hvit tekst
 
-// Tertiær/aksenter
+// Tertiær
 val TurkisTertiaer = Color (0xFF4DEEFF)
 val OnTurkis = Color (0xFF000000) // Svart tekst
 
