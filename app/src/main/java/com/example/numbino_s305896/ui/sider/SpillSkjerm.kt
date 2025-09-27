@@ -113,7 +113,7 @@ fun SpillSkjermUI (
             Spacer(modifier = Modifier.height(8.dp))
 
             // Regnestykke og svarfelt
-            RegnestykkeOgSvarBoks(regnestykke, brukerSvar)
+            RegnestykkeOgSvarBoks(regnestykke, brukerSvar, tilbakemelding)
 
             Spacer(modifier = Modifier.height(14.dp))
 

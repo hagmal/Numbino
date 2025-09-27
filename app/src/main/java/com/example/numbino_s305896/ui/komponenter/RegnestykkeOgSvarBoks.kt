@@ -1,6 +1,7 @@
 package com.example.numbino_s305896.ui.komponenter
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -14,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -24,8 +26,15 @@ import com.example.numbino_s305896.ui.theme.Numbino_s305896Theme
 fun RegnestykkeOgSvarBoks(
     regnestykke: String, // Regnestykket som skal vises
     svar: String, // Brukerens svar på regnestykket
+    tilbakemelding: Int,
     modifier: Modifier = Modifier
 ) {
+    val bordFarge = when (tilbakemelding) {
+        1 -> Color.Green
+        2 -> Color.Red
+        else -> Color.Transparent
+    }
+
     Row (
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
@@ -46,7 +55,12 @@ fun RegnestykkeOgSvarBoks(
             modifier = modifier
                 .size(72.dp)
                 .clip(RoundedCornerShape(12.dp))
-                .background(MaterialTheme.colorScheme.surfaceVariant),
+                .background(MaterialTheme.colorScheme.surfaceVariant)
+                .border(
+                    width = 4.dp,
+                    color = bordFarge,
+                    shape = RoundedCornerShape(12.dp)
+                ),
             contentAlignment = Alignment.Center
         ) {
             Text(
