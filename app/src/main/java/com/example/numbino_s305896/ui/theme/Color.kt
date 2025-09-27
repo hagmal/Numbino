@@ -15,10 +15,10 @@ val TurkisTertiaer = Color (0xFF4DEEFF)
 val OnTurkis = Color (0xFF000000) // Svart tekst
 
 // Bakgrunn
-val Bakgrunn = Color (0xFF394867)
+val Bakgrunn = Color (0xFF27344f)
 val OnBakgrunn = Color(0xFFFFFFFF) // Hvit tekst
 
-val SvarBoks = Color(0xFF202B42)
+val SvarBoks = Color(0xFF182338)
 val onSvarBoks = Color(0xFFFFFFFF) // Hvit tekst
 
 

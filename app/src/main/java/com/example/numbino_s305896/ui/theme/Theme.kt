@@ -20,6 +20,7 @@ private val DarkColorScheme = darkColorScheme(
 
     surfaceVariant = SvarBoks,
     onSurfaceVariant = onSvarBoks
+
 )
 
 
